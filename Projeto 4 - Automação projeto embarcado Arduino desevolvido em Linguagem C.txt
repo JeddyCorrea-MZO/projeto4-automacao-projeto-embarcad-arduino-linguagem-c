@@ -1,0 +1,133 @@
+Projeto 4 - Dio.me do Curso Developer em Linguagem C/C++
+
+************
+Exemplo simples em Arduino para controlar a iluminação de uma casa usando a linguagem C:
+
+// C++ code
+//
+/*
+  This program blinks pin 13 of the Arduino (the
+  built-in LED)
+*/
+
+// Definir o pino do LED
+const int ledPin = 13;
+
+void setup() {
+  // Configurar o pino do LED como saída
+  pinMode(ledPin, OUTPUT);
+}
+
+void loop() {
+  // Ligar o LED
+  digitalWrite(ledPin, HIGH);
+  // Aguardar 5 segundos
+  delay(500);
+  // Desligar o LED
+  digitalWrite(ledPin, LOW);
+  // Aguardar 5 segundos
+  delay(500);
+}
+
+https://www.tinkercad.com/things/hMqd6QtHG6L
+
+Neste exemplo, estamos usando o pino digital 13 para controlar um LED. No método setup, configuramos este pino como saída usando a função pinMode. 
+No método loop, que é executado repetidamente, ligamos e desligamos o LED a cada 5 segundos usando a função digitalWrite. 
+A função delay é usada para aguardar um determinado período de tempo (em milissegundos) antes de executar a próxima instrução.
+
+
+************
+
+Podemos expandir o código acima para controlar vários ambientes e equipamentos usando o sistema embarcado Arduino em linguagem C. 
+Aqui está um exemplo de como você pode fazer isso:
+
+// C++ code
+//
+
+#include <LiquidCrystal.h>
+
+// Inicializar o display LCD
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+// Definir o pino do sensor de temperatura
+const int sensorTemperaturaPin = A0;
+
+// Definir os pinos dos LEDs
+const int ledSalaPin = 13;
+const int ledCozinhaPin = 12;
+const int ledQuartoPin = 11;
+
+void setup() {
+  // Configurar o tamanho do display LCD
+  lcd.begin(16, 2);
+
+  // Configurar o pino do sensor de temperatura como entrada
+  pinMode(sensorTemperaturaPin, INPUT);
+  
+  // Configurar os pinos dos LEDs como saída
+  pinMode(ledSalaPin, OUTPUT);
+  pinMode(ledCozinhaPin, OUTPUT);
+  pinMode(ledQuartoPin, OUTPUT);
+}
+
+void loop() {
+  // Ler a temperatura do sensor de temperatura
+  int valorSensor = analogRead(sensorTemperaturaPin);
+  float tensao = valorSensor * (5.0 / 1023.0);
+  float temperatura = (tensao - 0.5) * 100;
+
+  // Limpar o display LCD
+  lcd.clear();
+
+  // Imprimir a temperatura no display LCD
+  
+  lcd.print("Temperatura: ");
+  lcd.setCursor(0,1); 	
+  lcd.print(temperatura);
+  lcd.print(" C");
+
+  // Aguardar 1 segundo
+  delay(1000);
+  
+  // Ligar o LED da sala
+  digitalWrite(ledSalaPin, HIGH);
+  // Aguardar 1 segundos
+  delay(1000);
+  // Desligar o LED da sala
+  digitalWrite(ledSalaPin, LOW);
+
+  // Ligar o LED da cozinha
+  digitalWrite(ledCozinhaPin, HIGH);
+  // Aguardar 1 segundos
+  delay(1000);
+  // Desligar o LED da cozinha
+  digitalWrite(ledCozinhaPin, LOW);
+
+  // Ligar o LED do quarto
+  digitalWrite(ledQuartoPin, HIGH);
+  // Aguardar 1 segundos
+  delay(1000);
+  // Desligar o LED do quarto
+  digitalWrite(ledQuartoPin, LOW);
+  
+}
+
+https://www.tinkercad.com/things/hWtZbKwpcAy
+
+Neste exemplo, estamos usando três pinos digitais para controlar três LEDs diferentes que representam a iluminação de três ambientes diferentes: sala, cozinha e quarto. 
+Também estamos usando um pino analógico para ler dados de um sensor de temperatura. 
+No método loop, ligamos e desligamos cada LED individualmente e lemos a temperatura do sensor de temperatura. 
+Em seguida, verificamos se a temperatura está acima de um determinado limite e tomamos uma ação apropriada (por exemplo, ligar o ar condicionado).
+
+Este é apenas um exemplo simples para ilustrar como você pode usar o Arduino para controlar vários ambientes e equipamentos em uma casa.
+
+
+************
+
+Para compilar podemos usar o Arduino IDE ou On-line: https://www.tinkercad.com
+
+
+
+
+
+
